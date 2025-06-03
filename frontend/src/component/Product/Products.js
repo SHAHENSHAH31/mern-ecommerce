@@ -28,7 +28,7 @@ const Products = () => {
   const alert = useAlert();
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [price, setPrice] = useState([0, 25000]);
+  const [price, setPrice] = useState([0, 2500000]);
   const [category, setCategory] = useState("");
 
   const [ratings, setRatings] = useState(0);
@@ -75,14 +75,15 @@ const Products = () => {
 
           <div className="filterBox">
             <Typography>Price</Typography>
-            <Slider
-              value={price}
-              onChange={priceHandler}
-              valueLabelDisplay="auto"
-              aria-labelledby="range-slider"
-              min={0}
-              max={25000}
-            />
+           <Slider
+  value={price}
+  onChange={priceHandler}
+  valueLabelDisplay="auto"
+  aria-labelledby="range-slider"
+  min={0}
+  max={2500000}
+  valueLabelFormat={(value) => `${(value / 1000000).toFixed(1)}M`}
+/>
 
             <Typography>Categories</Typography>
             <ul className="categoryBox">

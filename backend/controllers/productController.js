@@ -55,7 +55,7 @@ exports.getAllProducts = catchAsyncErrors(async (req, res, next) => {
       .filter();
   
     let product = await apiFeature.query;
-    console.log(product);
+    console.log('all products',product);
   
     let filteredProductsCount = product.length;
   
