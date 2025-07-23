@@ -1,9 +1,9 @@
 import axios from "axios";
 import { addToCart,removeCartItem,saveShippingInfo } from "../reducers/cartReducer";
-
+import { Base_URL } from "../base_URL";
 // Add to Cart
 export const addItemsToCart = (id, quantity) => async (dispatch,getState) => {
-  const { data } = await axios.get(`/api/v1/product/${id}`);
+  const { data } = await axios.get(`${Base_URL}/api/v1/product/${id}`);
   console.log( data,data.product.images[0].url);
 
   dispatch({

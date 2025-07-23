@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
+import { Base_URL } from "../base_URL";
 
 // Login
 export const login=createAsyncThunk("Users/login",async(arg,{rejectWithValue})=>{
@@ -11,7 +12,7 @@ export const login=createAsyncThunk("Users/login",async(arg,{rejectWithValue})=>
       let password=loginPassword;
       const config={ headers : { "Content-Type" : "application/json" } };
       const data= await axios.post(
-        `/api/v1/login`,
+        `${Base_URL}/api/v1/login`,
         {email,password},
         config
       );
@@ -31,7 +32,7 @@ export const register=createAsyncThunk("Users/register",async(myForm,{rejectWith
     console.log(myForm);
     const config={ headers : { "Content-Type" : "multipart/form-data" } };
     const data= await axios.post(
-      `/api/v1/register`,
+      `${Base_URL}/api/v1/register`,
       myForm,
       config
     );
@@ -47,7 +48,7 @@ export const register=createAsyncThunk("Users/register",async(myForm,{rejectWith
 export const loadUser = createAsyncThunk("Users/loaduser",async(arg,{rejectWithValue}) => {
   try {
 
-    const data  = await axios.get(`/api/v1/me`);
+    const data  = await axios.get(`${Base_URL}/api/v1/me`);
     return data;
   } catch (error) {
     return rejectWithValue(error.response);
@@ -58,7 +59,7 @@ export const loadUser = createAsyncThunk("Users/loaduser",async(arg,{rejectWithV
 export const logout = createAsyncThunk("Users/logout",async(arg,{rejectWithValue}) => {
   try {
 
-     await axios.get(`/api/v1/logout`);
+     await axios.get(`${Base_URL}/api/v1/logout`);
   } catch (error) {
     return rejectWithValue(error.response);
   }
@@ -73,7 +74,7 @@ export const updatePassword=createAsyncThunk("Users/Password",async(passwords,{r
     console.log(passwords);
     const config={ headers : { "Content-Type" : "application/json" } };
     const data= await axios.put(
-      `/api/v1/password/update`,
+      `${Base_URL}/api/v1/password/update`,
       passwords,
       config
     );
@@ -89,7 +90,7 @@ export const updatePassword=createAsyncThunk("Users/Password",async(passwords,{r
 export const getAllUsers = createAsyncThunk("Users/all",async(arg,{rejectWithValue}) => {
   try {
 
-    const data  = await axios.get(`/api/v1/admin/users`);
+    const data  = await axios.get(`${Base_URL}/api/v1/admin/users`);
     return data;
   } catch (error) {
     return rejectWithValue(error.response);
@@ -101,7 +102,7 @@ export const getAllUsers = createAsyncThunk("Users/all",async(arg,{rejectWithVal
 export const getUserDetails = createAsyncThunk("Users/details",async(id,{rejectWithValue}) => {
   try {
 
-    const data  = await axios.get(`/api/v1/admin/user/${id}`);
+    const data  = await axios.get(`${Base_URL}/api/v1/admin/user/${id}`);
     return data;
   } catch (error) {
     return rejectWithValue(error.response);
@@ -120,7 +121,7 @@ export const updateUser=createAsyncThunk("Users/update",async(arg,{rejectWithVal
    // console.log(passwords);
     const config={ headers : { "Content-Type" : "application/json" } };
     const data= await axios.put(
-      `/api/v1/admin/user/${id}`,
+      `${Base_URL}/api/v1/admin/user/${id}`,
       myForm,
       config
     );
@@ -140,7 +141,7 @@ export const deleteUser=createAsyncThunk("Users/delete",async(id,{rejectWithValu
   try{
     
     const data= await axios.delete(
-      `/api/v1/admin/user/${id}`
+      `${Base_URL}/api/v1/admin/user/${id}`
     );
 
     return data;
@@ -253,7 +254,7 @@ export const updateProfile=createAsyncThunk("Users/Profile",async(userData,{reje
   try{
     const config={ headers : { "Content-Type" : "multipart/form-data" } };
     const data= await axios.put(
-      `/api/v1/me/update`,
+      `${Base_URL}/api/v1/me/update`,
       userData,
       config
     );
@@ -393,7 +394,7 @@ export const forgotPassword = createAsyncThunk("Users/forgotpassword",async(emai
      console.log(email);
     const config = { headers: { "Content-Type": "application/json" } };
 
-    const  data  = await axios.post(`/api/v1/password/forgot`, email, config);
+    const  data  = await axios.post(`${Base_URL}/api/v1/password/forgot`, email, config);
 
     return data
   } catch (error) {
@@ -409,7 +410,7 @@ export const resetPassword = createAsyncThunk("Users/resetpassword",async(arg,{r
      console.log(token,myForm);
     const config = { headers: { "Content-Type": "application/json" } };
 
-    const  data  = await axios.put(`/api/v1/password/reset/${token}`, myForm, config);
+    const  data  = await axios.put(`${Base_URL}/api/v1/password/reset/${token}`, myForm, config);
 
     return data
   } catch (error) {
