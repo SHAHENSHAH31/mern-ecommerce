@@ -19,6 +19,7 @@ import EventIcon from "@material-ui/icons/Event";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import { useNavigate } from 'react-router-dom';
 import { clearErrors,createOrder } from "../../redux/reducers/orderReducer";
+import { Base_URL } from "../../redux/base_URL";
 
 const Payment = () => {
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
@@ -59,7 +60,7 @@ const Payment = () => {
         },
       };
       const { data } = await axios.post(
-        "/api/v1/payment/process",
+        `${Base_URL}/api/v1/payment/process`,
         paymentData,
         config
       );

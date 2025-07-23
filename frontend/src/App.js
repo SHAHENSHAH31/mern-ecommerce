@@ -40,6 +40,7 @@ import ProcessOrder from "./component/Admin/ProcessOrder.js";
 import UsersList from "./component/Admin/UsersList.js";
 import UpdateUser from "./component/Admin/UpdateUser.js";
 import ProductReviews from "./component/Admin/ProductReviews.js";
+import { Base_URL } from './redux/base_URL.js';
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.userReducerLogin);
@@ -47,7 +48,7 @@ function App() {
 
   async function getStripeApiKey() {
     try{
-      const { data } = await axios.get("/api/v1/stripeapikey");
+      const { data } = await axios.get(`${Base_URL}/api/v1/stripeapikey`);
       setStripeApiKey(data.stripeApiKey);
    console.log(data.stripeApiKey);
 
