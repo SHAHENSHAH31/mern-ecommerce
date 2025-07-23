@@ -1,7 +1,7 @@
 // config
 require('dotenv').config();
 const express = require("express");
-// const cors=require('cors')
+const cors=require('cors')
 const cookieParser = require("cookie-parser");
 const errorMiddleware = require("./middleware/error");
 const bodyParser = require("body-parser");
@@ -9,9 +9,9 @@ const fileUpload = require("express-fileupload");
 
 
 const app = express();
-// app.use(cors({
-//   origin: 'http://localhost:3000'  
-// }))
+app.use(cors({
+  origin: 'https://whimsical-dolphin-4c4d98.netlify.app/'  
+}))
 
 app.use(express.json());
 app.use(cookieParser());
