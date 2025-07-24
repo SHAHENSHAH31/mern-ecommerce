@@ -5,7 +5,7 @@ import axios from "../base_URL";
 
 export const getProducts= createAsyncThunk("Products",async(arg,{rejectWithValue})=>{
     try {
-        let {keyword="",currentPage=1,price=[0,250000000],category,ratings=0}=arg;
+        let {keyword="",currentPage=1,price=[0,200000],category,ratings=0}=arg;
          console.log("don");
          console.log(keyword,currentPage,category);
          let link=`/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;

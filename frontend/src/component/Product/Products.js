@@ -81,8 +81,8 @@ const Products = () => {
   valueLabelDisplay="auto"
   aria-labelledby="range-slider"
   min={0}
-  max={2500000}
-  valueLabelFormat={(value) => `${(value / 1000000).toFixed(1)}M`}
+  max={200000}
+  valueLabelFormat={(value) => `${(value / 1000).toFixed(0)}K`}
 />
 
             <Typography>Categories</Typography>
