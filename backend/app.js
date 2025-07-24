@@ -10,7 +10,8 @@ const fileUpload = require("express-fileupload");
 
 const app = express();
 app.use(cors({
-  origin: 'https://whimsical-dolphin-4c4d98.netlify.app/'  
+  origin: 'http://localhost:3000',
+  credentials: true   
 }))
 
 app.use(express.json());

@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit"
-import axios from "axios";
-import { Base_URL } from "../base_URL";
+
+import axios from "../base_URL";
 
 
 export const getProducts= createAsyncThunk("Products",async(arg,{rejectWithValue})=>{
@@ -8,10 +8,10 @@ export const getProducts= createAsyncThunk("Products",async(arg,{rejectWithValue
         let {keyword="",currentPage=1,price=[0,250000000],category,ratings=0}=arg;
          console.log("don");
          console.log(keyword,currentPage,category);
-         let link=`${Base_URL}/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
+         let link=`/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
 
          if(category){
-          link=`${Base_URL}/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
+          link=`/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
          }
       
       
@@ -27,7 +27,7 @@ export const getProducts= createAsyncThunk("Products",async(arg,{rejectWithValue
 export const getAdminProduct = createAsyncThunk("Product/admin",async(arg,{rejectWithValue})=> {
   try {
      console.log('he');
-    const  data  = await axios.get(`${Base_URL}/api/v1/admin/products`);
+    const  data  = await axios.get(`/api/v1/admin/products`);
     return data
 
   } catch (error) {
@@ -102,7 +102,7 @@ export const getAdminProduct = createAsyncThunk("Product/admin",async(arg,{rejec
  export const getProductDetails = createAsyncThunk("Product",async(id,{rejectWithValue})=> {
   try {
      console.log(id);
-    const  data  = await axios.get(`${Base_URL}/api/v1/product/${id}`);
+    const  data  = await axios.get(`/api/v1/product/${id}`);
     return data
 
   } catch (error) {
@@ -159,7 +159,7 @@ const intialState={
 
 export const getAllReviews = createAsyncThunk("Review/All",async(id,{rejectWithValue})=> {
   try {
-    const  data  = await axios.get(`${Base_URL}/api/v1/reviews?id=${id}`);
+    const  data  = await axios.get(`/api/v1/reviews?id=${id}`);
     return data
 
   } catch (error) {
@@ -211,7 +211,7 @@ export const newReview = createAsyncThunk("Review",async(reviewData,{rejectWithV
      const config={
       headers:{"Content-Type":"application/json"},
      }
-    const  data  = await axios.put(`${Base_URL}/api/v1/review`,reviewData,config);
+    const  data  = await axios.put(`/api/v1/review`,reviewData,config);
     return data
 
   } catch (error) {
@@ -275,7 +275,7 @@ export const newReviewReducer=createSlice({
 export const deleteReviews = createAsyncThunk("Review/delete",async(arg,{rejectWithValue})=> {
   try {
     const {reviewId,productId}=arg;
-    const  data  = await axios.delete(`${Base_URL}/api/v1/reviews?id=${reviewId}&productId=${productId}`);
+    const  data  = await axios.delete(`/api/v1/reviews?id=${reviewId}&productId=${productId}`);
     return data
 
   } catch (error) {
@@ -337,7 +337,7 @@ export const createProduct = createAsyncThunk("create/product",async(productData
      const config={
       headers:{"Content-Type":"multipart/form-data"},
      }
-    const  data  = await axios.post(`${Base_URL}/api/v1/admin/products/new`,productData,config);
+    const  data  = await axios.post(`/api/v1/admin/products/new`,productData,config);
     return data
 
   } catch (error) {
@@ -398,7 +398,7 @@ export const deleteProduct = createAsyncThunk("Delete/Product",async(id,{rejectW
   try {
      console.log('he');
     
-    const  data  = await axios.delete(`${Base_URL}/api/v1/admin/product/${id}`);
+    const  data  = await axios.delete(`/api/v1/admin/product/${id}`);
     return data
 
   } catch (error) {
@@ -415,7 +415,7 @@ export const updateProduct = createAsyncThunk("update/product",async(arg,{reject
      const config={
       headers:{"Content-Type":"multipart/form-data"},
      }
-    const  data  = await axios.put(`${Base_URL}/api/v1/admin/product/${productId}`, myForm,config);
+    const  data  = await axios.put(`/api/v1/admin/product/${productId}`, myForm,config);
     return data
 
   } catch (error) {

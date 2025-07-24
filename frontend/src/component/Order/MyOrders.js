@@ -13,6 +13,8 @@ import LaunchIcon from "@material-ui/icons/Launch";
 const MyOrders = () => {
   const dispatch = useDispatch();
 
+  console.log('inside my order=====================>')
+
   const alert = useAlert();
 
   const { loading, error, orders } = useSelector((state) => state.myOrders);
@@ -77,14 +79,15 @@ const MyOrders = () => {
     });
 
   useEffect(() => {
-    if (error) {
-      alert.error(error);
-      dispatch(clearError());
-    }
+  dispatch(myOrders());
+}, [dispatch]); 
 
-    dispatch(myOrders());
-  }, [dispatch, alert, error]);
-
+useEffect(() => {
+  if (error) {
+    alert.error(error);
+    dispatch(clearError());
+  }
+}, [error, alert, dispatch]);
   return (
     <Fragment>
       <MetaData title={`${user.name} - Orders`} />

@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit"
-import axios from "axios";
-import { Base_URL } from "../base_URL";
+
+import  axios  from "../base_URL";
 
 export const createOrder =  createAsyncThunk("create",async(order,{rejectWithValue})=> {
     try {
@@ -9,7 +9,7 @@ export const createOrder =  createAsyncThunk("create",async(order,{rejectWithVal
               "Content-Type": "application/json",
             },
           };
-          const data  = await axios.post(`${Base_URL}/api/v1/order/new`, order, config);
+          const data  = await axios.post(`/api/v1/order/new`, order, config);
       return data
   
     } catch (error) {
@@ -62,7 +62,8 @@ export const { clearErrors } = newOrderReducer.actions;
 export const myOrders =  createAsyncThunk("order",async(arg,{rejectWithValue})=> {
     try {
       
-          const data  = await axios.get(`${Base_URL}/api/v1/orders/me`);
+          const data  = await axios.get(`/api/v1/orders/me`);
+
       return data
   
     } catch (error) {
@@ -110,7 +111,7 @@ export const myOrderReducer=createSlice({
 export const getAllOrders =  createAsyncThunk("orders",async(arg,{rejectWithValue})=> {
   try {
     
-        const data  = await axios.get(`${Base_URL}/api/v1/admin/orders`);
+        const data  = await axios.get(`/api/v1/admin/orders`);
     return data
 
   } catch (error) {
@@ -162,7 +163,7 @@ export const updateOrder =  createAsyncThunk("update",async(arg,{rejectWithValue
             "Content-Type": "application/json",
           },
         };
-        const data  = await axios.put(`${Base_URL}/api/v1/admin/order/${params}`, myForm, config);
+        const data  = await axios.put(`/api/v1/admin/order/${params}`, myForm, config);
     return data
 
   } catch (error) {
@@ -174,7 +175,7 @@ export const updateOrder =  createAsyncThunk("update",async(arg,{rejectWithValue
 
 export const deleteOrder =  createAsyncThunk("delete",async(id,{rejectWithValue})=> {
   try {
-        const data  = await axios.delete(`${Base_URL}/api/v1/admin/order/${id}`);
+        const data  = await axios.delete(`/api/v1/admin/order/${id}`);
     return data
 
   } catch (error) {
@@ -260,7 +261,7 @@ export const { clearError } = myOrderReducer.actions;
 export const getOrderDetails =  createAsyncThunk("myorder",async(id,{rejectWithValue})=> {
   try {
     
-        const data  = await axios.get(`${Base_URL}/api/v1/order/${id}`);
+        const data  = await axios.get(`/api/v1/order/${id}`);
     return data
 
   } catch (error) {
