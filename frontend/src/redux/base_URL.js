@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'http://localhost:8000', // your backend base URL
+  baseURL: 'https://e-backend-eh6t.onrender.com', // your backend base URL
   withCredentials: true, // 🔥 send cookies with every request
 });
 

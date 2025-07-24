@@ -7,6 +7,8 @@ const sendToken=(user,statusCode,res)=>{
  const options ={
     expires:expiryDate,
     httpOnly:true,
+    sameSite: 'None', 
+    secure: true, 
  };
  res.status(statusCode).cookie("token",token,options).json({
     success:true,
