@@ -4,11 +4,11 @@ import { loadStripe } from "@stripe/stripe-js";
 const Stripe = ({stripeApiKey}) =>{
 
  return(
-    <>
+   
       <Elements stripe={loadStripe(stripeApiKey)}>
           <Payment />
         </Elements>
-    </>
+    
  )
 }
 
